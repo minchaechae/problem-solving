@@ -1,31 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(void) {
+#include <bits/stdc++.h>
+using namespace std;
+
+int n, k;
+stack<pair<int, int>> s;
+
+int main() {
   ios::sync_with_stdio(0);
   cin.tie(0);
 
-  int n;
-  stack<pair<int, int>> s;
-
   cin >> n;
-  for (int i=1; i<=n; i++) {
-    int t;
-    cin >> t;
-      
-    if (!s.empty()) {
-      while (s.top().first < t) {
-        s.pop();
-        if (s.empty()) {
-          cout << 0 << ' ';
-          break;
-        }
-      }
-      if (!s.empty()) cout << s.top().second << ' ';
-    }
-    // 첫번째
-    else cout << 0 << ' ';
 
-    s.push({t, i});
+  for (int i=1; i<=n; i++) {
+    cin >> k;
+
+    while (!s.empty() && s.top().second < k) {
+      s.pop();
+    }
+
+    if (s.empty()) cout << 0 << ' ';
+    else cout << s.top().first << ' ';
+
+    s.push({i, k});
   }
 }
